@@ -2,14 +2,14 @@
  * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
  * Click nbfs://nbhost/SystemFileSystem/Templates/Classes/Class.java to edit this template
  */
-package dhea05052023;
+package UTS_A;
 
 /**
  *
  * @author WIN10PC
  */
 public class StudentRecord {
-    public String name;
+    private String name;
     private String address;
     private int age;
     private double mathGrade;
@@ -110,5 +110,6 @@ public class StudentRecord {
         System.out.println("Science Grade:" + sGrade);
     }
 
+    
     
 }
