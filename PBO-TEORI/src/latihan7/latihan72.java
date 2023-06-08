@@ -22,7 +22,7 @@ public class latihan72 {
            angka[i] = Integer.parseInt(dataIn.readLine());
             }
         }catch(Exception ex){    
-        };
+        }
         int max=0;
         for(int i=0;i<angka.length;i++){
             max = (angka[i] > max)? angka[i]:max;
