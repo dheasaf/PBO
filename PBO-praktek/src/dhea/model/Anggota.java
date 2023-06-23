@@ -1,12 +1,13 @@
 /*
- * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
- * Click nbfs://nbhost/SystemFileSystem/Templates/Classes/Class.java to edit this template
+ * To change this license header, choose License Headers in Project Properties.
+ * To change this template file, choose Tools | Templates
+ * and open the template in the editor.
  */
-package dhea_model;
+package dhea.model;
 
 /**
  *
- * @author WIN10PC
+ * @author hp
  */
 public class Anggota {
     private String kodeanggota;
@@ -14,16 +15,6 @@ public class Anggota {
     private String alamat;
     private String jeniskelamin;
 
-    public Anggota(){
-    }
-
-    public Anggota(String kodeanggota, String namaanggota, String alamat, String jeniskelamin){
-        this.kodeanggota = kodeanggota;
-        this.namaanggota = namaanggota;
-        this.alamat = alamat;
-        this.jeniskelamin = jeniskelamin;
-        
-    }
     public String getKodeanggota() {
         return kodeanggota;
     }
@@ -55,5 +46,6 @@ public class Anggota {
     public void setJeniskelamin(String jeniskelamin) {
         this.jeniskelamin = jeniskelamin;
     }
- 
+    
+    
 }

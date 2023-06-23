@@ -6,7 +6,9 @@ package dhea_view;
 import javax.swing.JComboBox;
 import javax.swing.JTable;
 import javax.swing.JTextField;
-import dhea.controller.Anggota_controller;
+
+
+
 
 /**
  *
@@ -20,7 +22,9 @@ public class FormAnggota extends javax.swing.JFrame {
     Anggota_controller controller;
     public FormAnggota() {
         initComponents();
-        controller = new Anggota_controller(this);
+
+
+        Anggota_Controller Controlller = new Anggota_Controller(this);
         controller.clearForm();
         controller.tampil();
     }
@@ -94,6 +98,11 @@ public class FormAnggota extends javax.swing.JFrame {
         jLabel3.setText("Alamat");
 
         jLabel4.setText("Jenis Kelamin");
+        jLabel4.addComponentListener(new java.awt.event.ComponentAdapter() {
+            public void componentHidden(java.awt.event.ComponentEvent evt) {
+                jLabel4ComponentHidden(evt);
+            }
+        });
 
         cboJenisKelamin.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Item 1", "Item 2", "Item 3", "Item 4" }));
         cboJenisKelamin.addActionListener(new java.awt.event.ActionListener() {
@@ -138,9 +147,22 @@ public class FormAnggota extends javax.swing.JFrame {
                 {null, null, null, null}
             },
             new String [] {
-                "Title 1", "Title 2", "Title 3", "Title 4"
+                "Kode Anggota", "Nama Anggota", "Alamat", "Jenis Kelamin"
             }
-        ));
+        ) {
+            boolean[] canEdit = new boolean [] {
+                false, false, false, false
+            };
+
+            public boolean isCellEditable(int rowIndex, int columnIndex) {
+                return canEdit [columnIndex];
+            }
+        });
+        tabelAnggota.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                tabelAnggotaMouseClicked(evt);
+            }
+        });
         jScrollPane1.setViewportView(tabelAnggota);
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
@@ -170,8 +192,8 @@ public class FormAnggota extends javax.swing.JFrame {
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
                             .addComponent(txtKodeAnggota)
                             .addComponent(txtNamaAnggota)
-                            .addComponent(txtAlamat)
-                            .addComponent(cboJenisKelamin, 0, 110, Short.MAX_VALUE))))
+                            .addComponent(cboJenisKelamin, 0, 110, Short.MAX_VALUE)
+                            .addComponent(txtAlamat))))
                 .addContainerGap(35, Short.MAX_VALUE))
         );
         layout.setVerticalGroup(
@@ -185,11 +207,14 @@ public class FormAnggota extends javax.swing.JFrame {
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
                     .addComponent(jLabel2, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                     .addComponent(txtNamaAnggota))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(jLabel3)
-                    .addComponent(txtAlamat, javax.swing.GroupLayout.PREFERRED_SIZE, 16, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addGap(18, 18, 18)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                    .addGroup(layout.createSequentialGroup()
+                        .addComponent(jLabel3)
+                        .addGap(18, 18, 18))
+                    .addGroup(layout.createSequentialGroup()
+                        .addComponent(txtAlamat, javax.swing.GroupLayout.DEFAULT_SIZE, 28, Short.MAX_VALUE)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)))
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
                     .addComponent(jLabel4, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                     .addComponent(cboJenisKelamin, javax.swing.GroupLayout.PREFERRED_SIZE, 0, Short.MAX_VALUE))
@@ -221,6 +246,9 @@ public class FormAnggota extends javax.swing.JFrame {
 
     private void btnInsertActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnInsertActionPerformed
         // TODO add your handling code here:
+        controller.insert();
+        controller.clearForm();
+        controller.tampil();
     }//GEN-LAST:event_btnInsertActionPerformed
 
     private void btnUpdateActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnUpdateActionPerformed
@@ -229,11 +257,25 @@ public class FormAnggota extends javax.swing.JFrame {
 
     private void btnDeleteActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnDeleteActionPerformed
         // TODO add your handling code here:
+        controller.delete();
+        controller.clearForm();
+        controller.tampil();
     }//GEN-LAST:event_btnDeleteActionPerformed
 
     private void btnCancelActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnCancelActionPerformed
         // TODO add your handling code here:
+        controller.getAnggota();
     }//GEN-LAST:event_btnCancelActionPerformed
+
+    private void tabelAnggotaMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_tabelAnggotaMouseClicked
+        // TODO add your handling code here:
+        controller.getAnggota();
+    }//GEN-LAST:event_tabelAnggotaMouseClicked
+
+    private void jLabel4ComponentHidden(java.awt.event.ComponentEvent evt) {//GEN-FIRST:event_jLabel4ComponentHidden
+        // TODO add your handling code here:
+       
+    }//GEN-LAST:event_jLabel4ComponentHidden
 
     /**
      * @param args the command line arguments
@@ -286,4 +328,10 @@ public class FormAnggota extends javax.swing.JFrame {
     private javax.swing.JTextField txtKodeAnggota;
     private javax.swing.JTextField txtNamaAnggota;
     // End of variables declaration//GEN-END:variables
+
+    private static class Anggota_Controller {
+
+        public Anggota_Controller(FormAnggota aThis) {
+        }
+    }
 }
