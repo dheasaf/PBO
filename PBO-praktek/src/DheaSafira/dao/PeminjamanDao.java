@@ -7,7 +7,7 @@ import DheaSafira.model.Peminjaman;
 import java.util.List;
 /**
  *
- * @author ASUS
+ * @author dhea
  */
 public interface PeminjamanDao {
      void insert(Peminjaman peminjaman);

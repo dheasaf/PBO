@@ -8,7 +8,7 @@ import java.util.ArrayList;
 import DheaSafira.model.Peminjaman;
 /**
  *
- * @author ASUS
+ * @author dhea
  */
 public abstract class PeminjamanDaoImpl implements PeminjamanDao{
     private List<Peminjaman> data = new ArrayList<>();
