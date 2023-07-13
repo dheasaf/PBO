@@ -6,7 +6,7 @@ package latihan12;
 
 /**
  *
- * @author Melida Sari
+ * @author dhea safira
  */
 public class TestExceptions {
     public static void main(String[] args) {
