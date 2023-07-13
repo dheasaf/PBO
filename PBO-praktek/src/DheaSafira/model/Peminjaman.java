@@ -4,6 +4,10 @@
  */
 package DheaSafira.model;
 
+import java.text.ParseException;
+import java.text.SimpleDateFormat;
+import java.util.Date;
+
 /**
  *
  * @author ASUS
@@ -57,8 +61,14 @@ public class Peminjaman {
         public void setTglKembali(String tglKembali) {
             this.tglKembali = tglKembali;
         }
-        public int getSelisih(){
-            return 5;
+        public long getSelisih() throws ParseException{
+            SimpleDateFormat format = new SimpleDateFormat("dd-MM-yyyy")
+                    Date d1 = format.parse(tglPinjam);
+                    Date d2 = format.parse(tglKembali);
+                    long diff = d2.getTime() - dl.getTime();
+                    long diffDays = diff / (24 * 60 *60 *1000);
+                    return diffDays;
+                    
         }
 }
 
