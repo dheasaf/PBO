@@ -2,11 +2,11 @@
  * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
  * Click nbfs://nbhost/SystemFileSystem/Templates/Classes/Class.java to edit this template
  */
-package Melida070723;
+package latihan_12;
 
 /**
  *
- * @author Melida Sari
+ * @author dhea safira
  */
 public class TestExceptions {
     public static void main(String[] args) {
